@@ -50,7 +50,7 @@ const ListHeader = ({ children }: { children: ReactNode }) => {
 	)
 }
 
-const Footer = () => {
+const Footer = (props: any) => {
 	return (
 		<Box bg={useColorModeValue('gray.50', 'gray.900')} color={useColorModeValue('gray.700', 'gray.200')}>
 			<Container as={Stack} maxW={'6xl'} py={10}>
@@ -91,6 +91,7 @@ const Footer = () => {
 						<Stack direction={'row'}>
 							<Input
 								placeholder={'Your email address'}
+								_placeholder={{color: 'black'}}
 								bg={useColorModeValue('blackAlpha.100', 'whiteAlpha.100')}
 								border={0}
 								_focus={{
@@ -101,11 +102,14 @@ const Footer = () => {
 							/>
 							<IconButton
 								bg={'#00fead'}
-								color={useColorModeValue('white', 'gray.800')}
+								color={'black'}
 								// _hover={{
 								// 	bg: 'green.600'
 								// }}
-								onClick={() => alert('Code for newsletter subscription here')}
+								onClick={() => {
+									alert('Code for newsletter subscription here')
+									// ...
+								}}
 								aria-label='Subscribe'
 								icon={<BiMailSend />}
 							/>

@@ -1,9 +1,8 @@
-import { Box, Flex, Text, IconButton, Stack, Collapse, Icon, Link, Popover, PopoverTrigger, PopoverContent, useColorModeValue, useBreakpointValue, useDisclosure, Button, useColorMode } from '@chakra-ui/react'
-import { HamburgerIcon, CloseIcon, ChevronDownIcon, ChevronRightIcon, MoonIcon, SunIcon } from '@chakra-ui/icons'
+import { Box, Flex, Text, IconButton, Stack, Collapse, Link, Popover, PopoverTrigger, useColorModeValue, useBreakpointValue, useDisclosure, Button } from '@chakra-ui/react'
+import { HamburgerIcon, CloseIcon, MoonIcon, SunIcon } from '@chakra-ui/icons'
 
-const Header = () => {
+const Header = (props: any) => {
 	const { isOpen, onToggle } = useDisclosure()
-	const { colorMode, toggleColorMode } = useColorMode();
 
 	return (
 		<Box position='fixed' w='100%' zIndex={1}>
@@ -12,48 +11,47 @@ const Header = () => {
 					<IconButton onClick={onToggle} icon={isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />} variant={'ghost'} aria-label={'Toggle Navigation'} />
 				</Flex>
 				<Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
-					<Text textAlign={useBreakpointValue({ base: 'center', md: 'left' })} fontFamily={'heading'} color={useColorModeValue('gray.800', 'white')}>
+					<Text onClick={() => window.scrollTo(0, 0)} cursor='pointer' textAlign={useBreakpointValue({ base: 'center', md: 'left' })} fontFamily={'heading'} color={useColorModeValue('gray.800', 'white')}>
 						Logo
 					</Text>
 
 					<Flex display={{ base: 'none', md: 'flex' }} ml={10}>
-						<DesktopNav />
+						<DesktopNav navigate={props.navigate}/>
 					</Flex>
 				</Flex>
-				<Button onClick={toggleColorMode}>
-					{colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
-				</Button>
-				{/* <Stack flex={{ base: 1, md: 0 }} justify={'flex-end'} direction={'row'} spacing={6}>
-					<Button as={'a'} fontSize={'sm'} fontWeight={400} variant={'link'} href={'#'}>
+				<Stack flex={{ base: 1, md: 0 }} justify={'flex-end'} direction={'row'} spacing={6}>
+					{/* <Button as={'a'} fontSize={'sm'} fontWeight={400} variant={'link'} href={'#'}>
 						Sign In
-					</Button>
+					</Button> */}
 					<Button
 						display={{ base: 'none', md: 'inline-flex' }}
 						fontSize={'sm'}
 						fontWeight={600}
-						color={'white'}
-						bg={'pink.400'}
+						color={'black'}
+						bg={'#00fead'}
 						//   href={'#'}
 						_hover={{
-							bg: 'pink.300'
+							// bg: 'pink.300'
 						}}
 					>
-						Sign Up
+						Call to action
 					</Button>
-				</Stack> */}
+				</Stack>
+				<Button ml='15' onClick={props.toggleColorMode}>
+					{props.colorMode === 'light' ? <MoonIcon color='black'/> : <SunIcon />}
+				</Button>
 			</Flex>
 
 			<Collapse in={isOpen} animateOpacity>
-				<MobileNav />
+				<MobileNav navigate={props.navigate}/>
 			</Collapse>
 		</Box>
 	)
 }
 
-const DesktopNav = () => {
+const DesktopNav = ({ navigate }: any) => {
 	const linkColor = 'black'
 	const linkHoverColor = '#00fead'
-	const popoverContentBgColor = useColorModeValue('white', 'gray.800')
 
 	return (
 		<Stack direction={'row'} spacing={4}>
@@ -63,7 +61,7 @@ const DesktopNav = () => {
 						<PopoverTrigger>
 							<Link
 								p={2}
-								href={navItem.href ?? '#'}
+								onClick={() => navigate(navItem.label)}
 								fontSize={'sm'}
 								fontWeight={500}
 								color={linkColor}
@@ -75,16 +73,6 @@ const DesktopNav = () => {
 								{navItem.label}
 							</Link>
 						</PopoverTrigger>
-
-						{navItem.children && (
-							<PopoverContent border={0} boxShadow={'xl'} bg={popoverContentBgColor} p={4} rounded={'xl'} minW={'sm'}>
-								<Stack>
-									{navItem.children.map((child) => (
-										<DesktopSubNav key={child.label} {...child} />
-									))}
-								</Stack>
-							</PopoverContent>
-						)}
 					</Popover>
 				</Box>
 			))}
@@ -92,43 +80,26 @@ const DesktopNav = () => {
 	)
 }
 
-const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
-	return (
-		<Link href={href} role={'group'} display={'block'} p={2} rounded={'md'} _hover={{ bg: useColorModeValue('pink.50', 'gray.900') }}>
-			<Stack direction={'row'} align={'center'}>
-				<Box>
-					<Text transition={'all .3s ease'} _groupHover={{ color: 'pink.400' }} fontWeight={500}>
-						{label}
-					</Text>
-					<Text fontSize={'sm'}>{subLabel}</Text>
-				</Box>
-				<Flex transition={'all .3s ease'} transform={'translateX(-10px)'} opacity={0} _groupHover={{ opacity: '100%', transform: 'translateX(0)' }} justify={'flex-end'} align={'center'} flex={1}>
-					<Icon color={'pink.400'} w={5} h={5} as={ChevronRightIcon} />
-				</Flex>
-			</Stack>
-		</Link>
-	)
-}
-
-const MobileNav = () => {
+const MobileNav = ({ navigate }: any) => {
 	return (
 		<Stack bg={useColorModeValue('white', 'gray.800')} p={4} display={{ md: 'none' }}>
 			{NAV_ITEMS.map((navItem) => (
-				<MobileNavItem key={navItem.label} {...navItem} />
+				<MobileNavItem key={navItem.label} {...navItem} navigate={navigate} />
 			))}
 		</Stack>
 	)
 }
 
-const MobileNavItem = ({ label, children, href }: NavItem) => {
+const MobileNavItem = ({ label }: NavItem, { navigate }: any) => {
+	// eslint-disable-next-line
 	const { isOpen, onToggle } = useDisclosure()
 
 	return (
-		<Stack spacing={4} onClick={children && onToggle}>
+		<Stack spacing={4} onClick={onToggle}>
 			<Flex
 				py={2}
 				as={Link}
-				href={href ?? '#'}
+				onClick={() => navigate(label)}
 				justify={'space-between'}
 				align={'center'}
 				_hover={{
@@ -138,42 +109,25 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
 				<Text fontWeight={600} color={useColorModeValue('gray.600', 'gray.200')}>
 					{label}
 				</Text>
-				{children && <Icon as={ChevronDownIcon} transition={'all .25s ease-in-out'} transform={isOpen ? 'rotate(180deg)' : ''} w={6} h={6} />}
 			</Flex>
-
-			<Collapse in={isOpen} animateOpacity style={{ marginTop: '0!important' }}>
-				<Stack mt={2} pl={4} borderLeft={1} borderStyle={'solid'} borderColor={useColorModeValue('gray.200', 'gray.700')} align={'start'}>
-					{children &&
-						children.map((child) => (
-							<Link key={child.label} py={2} href={child.href}>
-								{child.label}
-							</Link>
-						))}
-				</Stack>
-			</Collapse>
 		</Stack>
 	)
 }
 
 interface NavItem {
 	label: string
-	subLabel?: string
-	children?: Array<NavItem>
-	href?: string
+	navigate?: void
 }
 
 const NAV_ITEMS: Array<NavItem> = [
 	{
-		label: 'Pricing',
-		href: '#pricing'
+		label: 'Pricing'
 	},
 	{
-		label: 'Products',
-		href: '#products'
+		label: 'Products'
 	},
 	{
-		label: 'Testimonials',
-		href: '#testimonials'
+		label: 'Testimonials'
 	}
 ]
 

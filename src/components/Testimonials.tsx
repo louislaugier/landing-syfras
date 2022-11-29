@@ -71,7 +71,9 @@ const Testimonials = () => {
 		<Box id='testimonials'>
 			<Container maxW={'7xl'} py={16} as={Stack} spacing={12}>
 				<Stack spacing={0} align={'center'}>
-					<Heading display='flex'>Our Clients<Text color='#00fead' ml='8px'>Speak</Text></Heading>
+					<Heading display='flex'>Our Clients<Text
+						// style={{textShadow: '0.5px 0.5px grey, -0.5px -0.5px grey, 0.5px -0.5px grey, -0.5px 0.5px grey'}}
+						color='#00fead' ml='8px'>Speak</Text></Heading>
 					<Text>We have been working with clients around the world</Text>
 				</Stack>
 				<Stack direction={{ base: 'column', md: 'row' }} spacing={{ base: 10, md: 4, lg: 10 }}>
