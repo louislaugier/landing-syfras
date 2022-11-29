@@ -3,6 +3,8 @@ import { HamburgerIcon, CloseIcon, MoonIcon, SunIcon } from '@chakra-ui/icons'
 
 const Header = (props: any) => {
 	const { isOpen, onToggle } = useDisclosure()
+	const linkColor = useColorModeValue('black', 'white')
+	const linkHoverColor = '#00fead'
 
 	return (
 		<Box position='fixed' w='100%' zIndex={1}>
@@ -11,12 +13,33 @@ const Header = (props: any) => {
 					<IconButton onClick={onToggle} icon={isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />} variant={'ghost'} aria-label={'Toggle Navigation'} />
 				</Flex>
 				<Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
-					<Text onClick={() => window.scrollTo(0, 0)} cursor='pointer' textAlign={useBreakpointValue({ base: 'center', md: 'left' })} fontFamily={'heading'} color={useColorModeValue('gray.800', 'white')}>
-						Logo
+					<Text id='logo' onClick={() => window.scrollTo(0, 0)} cursor='pointer' textAlign={useBreakpointValue({ base: 'center', md: 'left' })} fontFamily={'heading'} color={useColorModeValue('black', '#00fead')}>
+						Syfras
 					</Text>
-
 					<Flex display={{ base: 'none', md: 'flex' }} ml={10}>
-						<DesktopNav navigate={props.navigate}/>
+						<Stack direction={'row'} spacing={4}>
+							{NAV_ITEMS.map((navItem) => (
+								<Box key={navItem.label}>
+									<Popover trigger={'hover'} placement={'bottom-start'}>
+										<PopoverTrigger>
+											<Link
+												p={2}
+												onClick={() => props.navigate(navItem.label)}
+												fontSize={'sm'}
+												fontWeight={500}
+												color={linkColor}
+												_hover={{
+													textDecoration: 'none',
+													color: linkHoverColor
+												}}
+											>
+												{navItem.label}
+											</Link>
+										</PopoverTrigger>
+									</Popover>
+								</Box>
+							))}
+						</Stack>
 					</Flex>
 				</Flex>
 				<Stack flex={{ base: 1, md: 0 }} justify={'flex-end'} direction={'row'} spacing={6}>
@@ -30,53 +53,24 @@ const Header = (props: any) => {
 						color={'black'}
 						bg={'#00fead'}
 						//   href={'#'}
-						_hover={{
-							// bg: 'pink.300'
-						}}
+						_hover={
+							{
+								// bg: 'pink.300'
+							}
+						}
 					>
 						Call to action
 					</Button>
 				</Stack>
 				<Button ml='15' onClick={props.toggleColorMode}>
-					{props.colorMode === 'light' ? <MoonIcon color='black'/> : <SunIcon />}
+					{useColorModeValue(<MoonIcon color='black' />, <SunIcon />)}
 				</Button>
 			</Flex>
 
 			<Collapse in={isOpen} animateOpacity>
-				<MobileNav navigate={props.navigate}/>
+				<MobileNav navigate={props.navigate} />
 			</Collapse>
 		</Box>
-	)
-}
-
-const DesktopNav = ({ navigate }: any) => {
-	const linkColor = 'black'
-	const linkHoverColor = '#00fead'
-
-	return (
-		<Stack direction={'row'} spacing={4}>
-			{NAV_ITEMS.map((navItem) => (
-				<Box key={navItem.label}>
-					<Popover trigger={'hover'} placement={'bottom-start'}>
-						<PopoverTrigger>
-							<Link
-								p={2}
-								onClick={() => navigate(navItem.label)}
-								fontSize={'sm'}
-								fontWeight={500}
-								color={linkColor}
-								_hover={{
-									textDecoration: 'none',
-									color: linkHoverColor
-								}}
-							>
-								{navItem.label}
-							</Link>
-						</PopoverTrigger>
-					</Popover>
-				</Box>
-			))}
-		</Stack>
 	)
 }
 

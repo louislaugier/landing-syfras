@@ -21,7 +21,7 @@ const Logo = (props: any) => {
 const SocialButton = ({ children, label, href }: { children: ReactNode; label: string; href: string }) => {
 	return (
 		<chakra.button
-			bg={useColorModeValue('blackAlpha.100', 'whiteAlpha.100')}
+			bg={useColorModeValue('blackAlpha.100', '#2D3748')}
 			rounded={'full'}
 			w={8}
 			h={8}
@@ -52,12 +52,12 @@ const ListHeader = ({ children }: { children: ReactNode }) => {
 
 const Footer = (props: any) => {
 	return (
-		<Box bg={useColorModeValue('gray.50', 'gray.900')} color={useColorModeValue('gray.700', 'gray.200')}>
+		<Box bg={useColorModeValue('#F7FAFC', 'black')} color={useColorModeValue('black', 'white')}>
 			<Container as={Stack} maxW={'6xl'} py={10}>
 				<SimpleGrid templateColumns={{ sm: '1fr 1fr', md: '2fr 1fr 1fr 2fr' }} spacing={8}>
 					<Stack spacing={6}>
 						<Box>
-							<Logo color={useColorModeValue('gray.700', 'white')} />
+							<Logo color={useColorModeValue('black', 'white')} />
 						</Box>
 						<Text fontSize={'sm'}>© 2022 Chakra Templates. All rights reserved</Text>
 						<Stack direction={'row'} spacing={6}>
@@ -91,8 +91,8 @@ const Footer = (props: any) => {
 						<Stack direction={'row'}>
 							<Input
 								placeholder={'Your email address'}
-								_placeholder={{color: 'black'}}
-								bg={useColorModeValue('blackAlpha.100', 'whiteAlpha.100')}
+								_placeholder={{color: useColorModeValue('black', 'white')}}
+								bg={useColorModeValue('blackAlpha.100', '#2D3748')}
 								border={0}
 								_focus={{
 									bg: 'whiteAlpha.300',

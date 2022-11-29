@@ -109,7 +109,7 @@ const Pricing = () => {
 								</ListItem>
 							</List>
 							<Box w='80%' pt={7}>
-								<Button w='full' bg='#00fead'>
+								<Button w='full' bg='#00fead' color='black'>
 									Start trial
 								</Button>
 							</Box>

@@ -10,24 +10,25 @@ const FullScreen = (props: any) => {
           rel="stylesheet"
         />
       </Head> */}
-			<div style={{ backgroundColor: '#F7FAFC', width: '100%' }}>
+			<div style={{ backgroundColor: useColorModeValue('#F7FAFC', 'black'), width: '100%' }}>
 				<Container maxW={'3xl'}>
 					<Stack as={Box} textAlign={'center'} spacing={{ base: 8, md: 14 }} py={{ base: 20, md: 36 }}>
 						<Heading fontWeight={600} fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }} lineHeight={'110%'}>
 							Lorem ipsum <br />
 							<Text as={'span'} color={'#00fead'}
-								// style={{textShadow: '0.25px 0.25px grey, -0.25px -0.25px grey, 0.25px -0.25px grey, -0.25px 0.25px grey'}}
+								style={{textShadow: useColorModeValue('0.25px 0.25px grey, -0.25px -0.25px grey, 0.25px -0.25px grey, -0.25px 0.25px grey', '')}}
 							>
 								dolor sit amet
 							</Text>
 						</Heading>
-						<Text color={'black'}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</Text>
+						<Text color={useColorModeValue('black', 'white')}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</Text>
 						<Stack direction={'column'} spacing={3} align={'center'} alignSelf={'center'} position={'relative'}>
 							<Button
 								// colorScheme={'green'}
 								bg={'#00fead'}
 								rounded={'full'}
 								px={6}
+								color='black'
 								// _hover={{
 								// 	bg: '#00fead'
 								// }}
@@ -35,12 +36,12 @@ const FullScreen = (props: any) => {
 							>
 								Get Started
 							</Button>
-							<Button variant={'link'} size={'sm'} color='black' onClick={() => props.navigate('products')}>
+							<Button variant={'link'} size={'sm'} color={useColorModeValue('black', 'white')} onClick={() => props.navigate('products')}>
 								Learn more
 							</Button>
 							<Box>
 								<Icon as={Arrow} color={useColorModeValue('gray.800', 'gray.300')} w={71} position={'absolute'} right={-71} top={'10px'} />
-								<Text fontSize={'lg'} fontFamily={'Caveat'} position={'absolute'} right={'-125px'} top={'-15px'} transform={'rotate(10deg)'} color='black'>
+								<Text fontSize={'lg'} fontFamily={'Caveat'} position={'absolute'} right={'-125px'} top={'-15px'} transform={'rotate(10deg)'} color={useColorModeValue('black', 'white')}>
 									Starting at $15/mo
 								</Text>
 							</Box>

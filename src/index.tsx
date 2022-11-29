@@ -30,7 +30,7 @@ const App = () => {
 
 	return (
 		<>
-			<Header colorMode={colorMode} toggleColorMode={toggleColorMode} navigate={navigate}/>
+			<Header toggleColorMode={toggleColorMode} navigate={navigate}/>
 			<FullScreen navigate={navigate}/>
 			<Pricing/>
 			<Products/>

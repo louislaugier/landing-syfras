@@ -8,7 +8,7 @@ const Testimonial = ({ children }: { children: ReactNode }) => {
 const TestimonialContent = ({ children }: { children: ReactNode }) => {
 	return (
 		<Stack
-			bg={useColorModeValue('white', 'gray.800')}
+			bg={useColorModeValue('white', '#2D3748')}
 			boxShadow={'lg'}
 			p={8}
 			rounded={'xl'}
@@ -24,7 +24,7 @@ const TestimonialContent = ({ children }: { children: ReactNode }) => {
 				borderRightWidth: 16,
 				borderTop: 'solid',
 				borderTopWidth: 16,
-				borderTopColor: useColorModeValue('white', 'gray.800'),
+				borderTopColor: useColorModeValue('white', '#2D3748'),
 				pos: 'absolute',
 				bottom: '-16px',
 				left: '50%',

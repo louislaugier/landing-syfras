@@ -1,4 +1,4 @@
-import { Box, VStack, Button, Flex, Divider, chakra, Grid, GridItem, Container } from '@chakra-ui/react'
+import { Box, VStack, Button, Flex, Divider, chakra, Grid, GridItem, Container, useColorModeValue } from '@chakra-ui/react'
 import {} from '@chakra-ui/react'
 
 interface FeatureProps {
@@ -19,7 +19,7 @@ const Feature = ({ heading, text }: FeatureProps) => {
 
 const Products = () => {
 	return (
-		<div id='products' style={{ backgroundColor: '#F7FAFC', width: '100%', padding: '5px 0 30px 0' }}>
+		<div id='products' style={{ backgroundColor: useColorModeValue('#F7FAFC', 'black'), width: '100%', padding: '5px 0 30px 0' }}>
 			<Box as={Container} maxW='7xl' mt={14} p={4}>
 				<Grid
 					templateColumns={{
@@ -34,7 +34,7 @@ const Products = () => {
 							<chakra.h2 fontSize='3xl' fontWeight='700'>
 								Medium length title
 							</chakra.h2>
-							<Button bg='#00fead' size='md'>
+							<Button color='black' bg='#00fead' size='md'>
 								Call To Action
 							</Button>
 						</VStack>
