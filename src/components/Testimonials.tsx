@@ -68,7 +68,7 @@ const TestimonialAvatar = ({ src, name, title }: { src: string; name: string; ti
 
 const Testimonials = () => {
 	return (
-		<Box id='testimonials'>
+		<Box id='testimonials' backgroundColor={useColorModeValue('#F7FAFC', 'black')}>
 			<Container maxW={'7xl'} py={16} as={Stack} spacing={12}>
 				<Stack spacing={0} align={'center'}>
 					<Heading display='flex'>Our Clients<Text

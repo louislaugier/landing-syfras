@@ -10,7 +10,7 @@ const FullScreen = (props: any) => {
           rel="stylesheet"
         />
       </Head> */}
-			<div style={{ backgroundColor: useColorModeValue('#F7FAFC', 'black'), width: '100%' }}>
+			<div style={{ backgroundColor: useColorModeValue('#F7FAFC', 'black'), width: '100%', height: '100vh', display: 'flex', alignItems: 'center'}}>
 				<Container maxW={'3xl'}>
 					<Stack as={Box} textAlign={'center'} spacing={{ base: 8, md: 14 }} py={{ base: 20, md: 36 }}>
 						<Heading fontWeight={600} fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }} lineHeight={'110%'}>
@@ -32,11 +32,12 @@ const FullScreen = (props: any) => {
 								// _hover={{
 								// 	bg: '#00fead'
 								// }}
-								onClick={() => props.navigate('pricing')}
+								onClick={() => props.navigateSmoothly('pricing')}
+								_hover={{color: 'white', backgroundColor: 'gray.800'}}
 							>
 								Get Started
 							</Button>
-							<Button variant={'link'} size={'sm'} color={useColorModeValue('black', 'white')} onClick={() => props.navigate('products')}>
+							<Button variant={'link'} size={'sm'} color={useColorModeValue('black', 'white')} onClick={() => props.navigateSmoothly('products')}>
 								Learn more
 							</Button>
 							<Box>

@@ -19,7 +19,7 @@ const Feature = ({ heading, text }: FeatureProps) => {
 
 const Products = () => {
 	return (
-		<div id='products' style={{ backgroundColor: useColorModeValue('#F7FAFC', 'black'), width: '100%', padding: '5px 0 30px 0' }}>
+		<div id='products' style={{ backgroundColor: useColorModeValue('#F7FAFC', 'black'), width: '100%', padding: '5px 0 75px 0' }}>
 			<Box as={Container} maxW='7xl' mt={14} p={4}>
 				<Grid
 					templateColumns={{
@@ -34,7 +34,7 @@ const Products = () => {
 							<chakra.h2 fontSize='3xl' fontWeight='700'>
 								Medium length title
 							</chakra.h2>
-							<Button color='black' bg='#00fead' size='md'>
+							<Button color='black' _hover={{color: 'white', backgroundColor: 'gray.800'}} bg='#00fead' size='md'>
 								Call To Action
 							</Button>
 						</VStack>
@@ -53,11 +53,12 @@ const Products = () => {
 						md: 'repeat(4, 1fr)'
 					}}
 					gap={{ base: '8', sm: '12', md: '16' }}
+					justifyContent='space-between'
+					display='flex'
 				>
 					<Feature heading={'First product'} text={'Short text describing one of you product/service'} />
 					<Feature heading={'Second product'} text={'Short text describing one of you product/service'} />
 					<Feature heading={'Third product'} text={'Short text describing one of you product/service'} />
-					<Feature heading={'Fourth product'} text={'Short text describing one of you product/service'} />
 				</Grid>
 			</Box>
 		</div>

@@ -55,7 +55,7 @@ const Pricing = () => {
 							</ListItem>
 						</List>
 						<Box w='80%' pt={7}>
-							<Button w='full' borderColor='#00fead' variant='outline'>
+							<Button onClick={() => window.open('')} w='full' borderColor='#00fead' variant='outline'>
 								Start trial
 							</Button>
 						</Box>
@@ -109,7 +109,7 @@ const Pricing = () => {
 								</ListItem>
 							</List>
 							<Box w='80%' pt={7}>
-								<Button w='full' bg='#00fead' color='black'>
+								<Button onClick={() => window.open('')} w='full' bg='#00fead' color='black' _hover={{color: 'white', backgroundColor: 'gray.900'}}>
 									Start trial
 								</Button>
 							</Box>
@@ -149,7 +149,7 @@ const Pricing = () => {
 							</ListItem>
 						</List>
 						<Box w='80%' pt={7}>
-							<Button w='full' borderColor='#00fead' variant='outline'>
+							<Button onClick={() => window.open('')} w='full' borderColor='#00fead' variant='outline'>
 								Start trial
 							</Button>
 						</Box>
